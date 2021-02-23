@@ -1,0 +1,9 @@
+---
+# it start with three dash
+- 
+  hosts: web
+  tasks:
+    - name: install latest package of httpd
+      yum:
+        name: httpd 
+        state: latest
