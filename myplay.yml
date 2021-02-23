@@ -7,3 +7,28 @@
       yum:
         name: httpd 
         state: latest
+    - name: start and enable httpd service
+      service:
+        name: httpd
+        enabled: yes
+        state: started
+    - name: install latest package of firewalld
+      yum:
+        name: firewalld
+        state: latest
+    - name: Start and Enabled the firewalld
+      service:
+        name: firewalld 
+        enabled: yes
+        state: started
+    - name: Permit httpd service 
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
+    - name: create an simple html page 
+      copy:
+        content: "Welcome to ANsible Page \n"
+        dest: /var/www/html/index.html
+        
